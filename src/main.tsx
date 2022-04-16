@@ -1,5 +1,5 @@
-import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
+import ReactDOM from 'react-dom';
+import { StepType, TourProvider } from '@reactour/tour';
 
 import './index.css';
 import 'tailwindcss/tailwind.css';
@@ -7,11 +7,17 @@ import 'tailwindcss/tailwind.css';
 import App from './App';
 
 const container = document.getElementById('root');
-if (container) {
-  const root = createRoot(container);
-  root.render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-}
+
+const steps: StepType[] = [
+  {
+    selector: '#test-selector',
+    content: 'Test Content',
+  },
+];
+
+ReactDOM.render(
+  <TourProvider steps={steps}>
+    <App />
+  </TourProvider>,
+  container
+);
